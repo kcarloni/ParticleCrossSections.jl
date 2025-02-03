@@ -3,7 +3,7 @@ Cross-sections for high energy particle collisions. Currently, I've implemented
 from Giunti + Kim (2007) and Gandhi+ (1995)
 - neutrino-electron total `σ_tot_nuele( E_nu, nu, T_th=0MeV )`
 
-![neutrino-electron total xs]([figures/xs_nuele.pdf))
+![neutrino-electron total xs](figures/xs_nuele.pdf)
 
 from Kafexhiu+ (2014) 
 - proton-proton total inelastic `σ_inel_pp( E_proton )`
