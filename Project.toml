@@ -1,0 +1,12 @@
+name = "ParticleCrossSections"
+uuid = "4947cbbd-da14-4598-862c-cc3621144adb"
+authors = ["kcarloni <kcarloni@g.harvard.edu>"]
+version = "0.1.0"
+
+[deps]
+AstroParticleUnits = "7ef70e66-125c-4f32-8552-6b4d78ac8c93"
+IsotopeTable = "301f09c9-9f3f-4b04-816f-ee47ab44b8cb"
+ParticleTable = "f9d7ea0e-6852-4d9a-959f-923059567c30"
+
+[compat]
+IsotopeTable = "0.1.0"
