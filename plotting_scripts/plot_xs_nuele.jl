@@ -66,7 +66,7 @@ begin
     vlines( 11GeV/u_x )
 
     axislegend(ax, position=:lt)
-    save( "figures/xs_nuele.pdf", fig )
+    save( "figures/xs_nuele.svg", fig )
     fig
 end
 
