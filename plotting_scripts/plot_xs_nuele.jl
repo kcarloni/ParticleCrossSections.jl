@@ -41,7 +41,13 @@ begin
     fig = Figure()
     ax = Axis( fig[1,1], yscale=log10, xscale=log10,
         xlabel="neutrino energy $(unit(u_x))",
-        ylabel="cross-section $(unit(u_y))"
+        ylabel="cross-section $(unit(u_y))",
+        xticks=LogTicks(-3:3:12),
+        yticks=LogTicks(-45:5:-30),
+        ygridvisible=false,
+        xgridvisible=false
+        # ygridwidth=0.2,
+        # xgridwidth=0.2
     )
 
     x = exp10.(-3:0.05:12) * GeV
@@ -58,7 +64,8 @@ begin
         end
 
         lines!( ax, x/u_x, y/u_y, 
-            label="$(nu.glyph)",
+            label = nu.glyph,
+            # label=(@lstring  L"\mathrm{e}^- + " * nu.latex ),
             color=c,
             linestyle=ls
         )
