@@ -1,2 +1,7 @@
 .vscode/
 Manifest.toml
+*/__pycache__/
+.DS_store
+
+lib/
+plotting_scripts/
