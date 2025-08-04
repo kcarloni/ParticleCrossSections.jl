@@ -10,13 +10,6 @@ Interpolations = "a98d9a8b-a2ab-59e6-89dd-64a1c18fca59"
 IsotopeTable = "301f09c9-9f3f-4b04-816f-ee47ab44b8cb"
 ParticleTable = "f9d7ea0e-6852-4d9a-959f-923059567c30"
 
-[compat]
-AstroParticleUnits = "0.1.0"
-DelimitedFiles = "1.9.1"
-Interpolations = "0.15.1"
-IsotopeTable = "0.1.0"
-ParticleTable = "0.1.0"
-
 [sources]
 AstroParticleUnits = {url = "https://github.com/kcarloni/AstroParticleUnits.jl.git"}
 ParticleTable = {url = "https://github.com/kcarloni/ParticleTable.jl.git"}
