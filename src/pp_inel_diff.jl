@@ -185,6 +185,9 @@ end
     """
     function dσ_nucnuc_AAfrag( Eprim, Esec, prim, targ, sec )
 
+        prim = (prim == Particle(; A=1, Z=1)) ? Particle("p") : prim 
+        targ = (targ == Particle(; A=1, Z=1)) ? Particle("p") : targ 
+
         j = findfirst( sec .== aafrag_combos.s )
         i = findfirst( Ref( (prim, targ) ) .== aafrag_combos.pt )
         
