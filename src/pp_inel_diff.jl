@@ -26,10 +26,10 @@ end
 
     function load_dxs_aafrag202()
 
-        He = isotopes[2,4]
-        C = isotopes[6,12]
-        Al = isotopes[13, 26]
-        Fe = isotopes[26, 56]
+        He = Particle(; Z=2, A=4)
+        C  = Particle(; Z=6, A=12)
+        Al = Particle(; Z=13, A=26)
+        Fe = Particle(; Z=26, A=56) 
 
         # NamedTuple{ (:prim, :targ) }.(
         prim_targ_pairs = [

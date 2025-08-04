@@ -25,24 +25,24 @@ function try_make_range( x, rtol=1e-5 )
     end
 end
 
-using IsotopeTable 
-function Base.getproperty(obj::Isotope, sym::Symbol)
-    if sym === :Z; return obj.atomic_number
-    elseif sym === :A; return obj.mass_number
-    else # fallback to getfield
-        return getfield(obj, sym)
-    end
-end
-Base.broadcastable( obj::Isotope) = Ref(obj)
-export isotopes
+# using IsotopeTable 
+# function Base.getproperty(obj::Isotope, sym::Symbol)
+#     if sym === :Z; return obj.atomic_number
+#     elseif sym === :A; return obj.mass_number
+#     else # fallback to getfield
+#         return getfield(obj, sym)
+#     end
+# end
+# Base.broadcastable( obj::Isotope) = Ref(obj)
+# export isotopes
 
-function Base.getproperty(obj::Particle, sym::Symbol)
-    if sym === :Z; return ParticleTable.Corpuscles.Z(obj)
-    elseif sym === :A; return ParticleTable.Corpuscles.A(obj)
-    else # fallback to getfield
-        return getfield(obj, sym)
-    end
-end
+# function Base.getproperty(obj::Particle, sym::Symbol)
+#     if sym === :Z; return ParticleTable.Corpuscles.Z(obj)
+#     elseif sym === :A; return ParticleTable.Corpuscles.A(obj)
+#     else # fallback to getfield
+#         return getfield(obj, sym)
+#     end
+# end
 
 # local scope constants for particles -- shorter code
 const p = Particle("p")
