@@ -47,7 +47,6 @@ end
 # local scope constants for particles -- shorter code
 const p = Particle("p")
 
-
 include("pp_inel_tot.jl")
 export σ_inel_pp, σ_inel_pnuc, σ_inel_nucnuc
 export w_AB, f_secondary_mult
