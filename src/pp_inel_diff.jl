@@ -29,7 +29,7 @@ end
         fpath = modpath * "/data/dsig_pp/aafrag101/"
         out = readdlm( fpath * fname  )
 
-        println(fname)
+        # println(fname)
 
         E_prim = unique( out[:,1] ) * eV 
         E_sec = unique( out[:,2]  ) * eV
@@ -44,9 +44,10 @@ end
             vec = vcat(vec, fill(0, length(rng_prim)*length(rng_sec) - size(out,1) ))
         end
 
-        mat = reshape( vec, length(rng_prim), length(rng_sec) )
-        mat[ mat .< 1e-50 ] .= exp10.(-100)
+        mat = reshape( vec, length(rng_sec), length(rng_prim)  )'
+
         mat .= log10.( mat )
+        mat[ isnan.(mat) ] .= -100
 
         return (rng_prim, rng_sec), mat
     end
@@ -118,6 +119,39 @@ end
 # =========================================
 # based on AAfrag tables (202): 
 
+    """
+        load_aafrag202_dxs_from_file( fname, ind )
+
+    ind = index of secondary particle produced, out of list of options (e.g. nu_e, anu_e, etc.)
+    """
+    function load_aafrag202_dxs_from_file( fname, ind )
+
+        fpath = modpath * "/data/dsig_pp/aafrag202/"
+        out = readdlm( fpath * fname  )
+
+        # println(fname)
+
+        # indices where each sub-table begins
+        ind_start = findall( out[:,1] .== 0.0 )
+
+        ind_start_end = collect( zip( ind_start, [ (ind_start[2:end] .- 1)..., size(out, 1) ] ) )
+
+        i0, i1 = ind_start_end[ind]
+
+        E_prim = out[(i0+1):i1, 1] * GeV
+        T_sec = out[i0, 2:end] * GeV
+
+        rng_prim = try_make_range( log10.( E_prim/1GeV), 1e-1 )
+        rng_sec  = try_make_range( log10.( T_sec/1GeV), 1e-1 )
+
+        mat = out[(i0+1):i1, 2:end ]
+        mat[ mat .< 1e-50 ] .= exp10.(-100)
+        mat .= log10.( mat )
+
+        return (rng_prim, rng_sec), mat
+
+    end
+
     function load_dxs_aafrag202()
 
         He = Particle(; Z=2, A=4)
@@ -183,40 +217,6 @@ end
             end
         end
         return (pt=prim_targ_pairs, s=all_secs), fluxes 
-    end
-
-    """
-        load_aafrag202_dxs_from_file( fname, ind )
-
-    ind = index of secondary particle produced, out of list of options (e.g. nu_e, anu_e, etc.)
-    """
-    function load_aafrag202_dxs_from_file( fname, ind )
-
-        fpath = modpath * "/data/dsig_pp/aafrag202/"
-        out = readdlm( fpath * fname  )
-
-        println(fname)
-
-        # indices where each sub-table begins
-        ind_start = findall( out[:,1] .== 0.0 )
-
-        ind_start_end = collect( zip( ind_start, [ (ind_start[2:end] .- 1)..., size(out, 1) ] ) )
-
-        i0, i1 = ind_start_end[ind]
-
-        E_prim = out[(i0+1):i1, 1] * GeV
-        T_sec = out[i0, 2:end] * GeV
-
-        rng_prim = try_make_range( log10.( E_prim/1GeV), 1e-1 )
-        rng_sec  = try_make_range( log10.( T_sec/1GeV), 1e-1 )
-
-
-        mat = out[(i0+1):i1, 2:end ]
-        mat[ mat .< 1e-50 ] .= exp10.(-100)
-        mat .= log10.( mat )
-
-        return (rng_prim, rng_sec), mat
-
     end
 
 # =========================================
