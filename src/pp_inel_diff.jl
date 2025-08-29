@@ -29,7 +29,7 @@ end
         fpath = modpath * "/data/dsig_pp/aafrag101/"
         out = readdlm( fpath * fname  )
 
-        @println fname
+        println(fname)
 
         E_prim = unique( out[:,1] ) * eV 
         E_sec = unique( out[:,2]  ) * eV
@@ -195,7 +195,7 @@ end
         fpath = modpath * "/data/dsig_pp/aafrag202/"
         out = readdlm( fpath * fname  )
 
-        @println fname
+        println(fname)
 
         # indices where each sub-table begins
         ind_start = findall( out[:,1] .== 0.0 )
